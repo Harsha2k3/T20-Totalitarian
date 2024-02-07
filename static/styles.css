@@ -1,0 +1,246 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #141e30;
+    color: #fff;
+}
+
+.container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 400px;
+    padding: 40px;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    border-radius: 10px;
+    outline: 3px solid transparent;
+    overflow: hidden;
+    box-shadow: 0 0 15px #03e9f4, 0 15px 25px rgba(0, 0, 0, 0.6);
+    animation: breatheShadow 2s infinite alternate;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    box-sizing: border-box;
+    border: 3px solid transparent;
+    border-image: linear-gradient(90deg, transparent, #03e9f4, transparent) 1;
+    border-image-slice: 1;
+    animation: outlineRotate 5s infinite linear;
+}
+
+@keyframes breatheShadow {
+    0% {
+        box-shadow: 0 0 15px #03e9f4, 0 0 25px rgba(0, 0, 0, 0.6);
+    }
+    100% {
+        box-shadow: 0 0 25px #03e9f4, 0 0 40px rgba(0, 0, 0, 0.8);
+    }
+}
+
+@keyframes outlineRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+h1 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+    animation: fadeInDown 1s;
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+    animation: fadeIn 1s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.form-group select,
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 10px;
+    border: none;
+    border-bottom: 1px solid #fff;
+    outline: none;
+    background: transparent;
+    animation: slideInBottom 1s;
+}
+
+@keyframes slideInBottom {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.form-group select option {
+    color: #fff;
+}
+
+.form-group select:focus,
+.form-group input:focus {
+    border-bottom: 1px solid #03e9f4;
+}
+
+.form-group select:focus option {
+    color: #000;
+}
+
+.form-group select:focus + label,
+.form-group input:focus + label,
+.form-group select:valid + label,
+.form-group input:valid + label {
+    top: -30px;
+    left: 0;
+    color: #03e9f4;
+    font-size: 12px;
+    text-align: right;
+    animation: fadeInLabel 1s;
+}
+
+@keyframes fadeInLabel {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-group label {
+    position: absolute;
+    top: 10px;
+    left: 0;
+    padding: 10px 0;
+    font-size: 16px;
+    color: #fff;
+    pointer-events: none;
+    transition: .5s;
+    opacity: 0.5;
+}
+
+button {
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    font-size: 16px;
+    text-decoration: none;
+    text-transform: uppercase;
+    overflow: hidden;
+    transition: .5s;
+    margin-top: 20px;
+    letter-spacing: 4px;
+    background-color: #03e9f4;
+    border: none;
+    border-radius: 5px;
+    position: relative;
+    animation: scaleButton 1s infinite alternate;
+}
+
+@keyframes scaleButton {
+    0% {
+        transform: scale(1);
+    }
+    100% {
+        transform: scale(1.05);
+    }
+}
+
+button:hover {
+    background: #031e30;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4, 0 0 25px #03e9f4, 0 0 50px #03e9f4, 0 0 100px #03e9f4;
+}
+
+button span {
+    position: absolute;
+    display: block;
+}
+
+button span::before {
+    content: '';
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background: #fff;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: rotateLine 2s linear infinite;
+}
+
+@keyframes rotateLine {
+    0% {
+        transform: translateX(-50%) rotate(0deg);
+    }
+    100% {
+        transform: translateX(-50%) rotate(360deg);
+    }
+}
+
+.prediction-score {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: #03e9f4;
+    color: #fff;
+    font-size: 24px;
+    text-align: center;
+    border-radius: 5px;
+    display: none;
+    animation: fadeInUp 1s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

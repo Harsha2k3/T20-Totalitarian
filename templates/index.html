@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Score Predictor</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>Cricket Score Predictor</h1>
+
+    <form id="predictionForm" action="{{ url_for('predict') }}" method="post">
+        <div class="form-group">
+            <select id="batting_team" name="batting_team" required>
+                <option value="" disabled selected></option>
+                {% for team in teams %}
+                    <option value="{{ team }}">{{ team }}</option>
+                {% endfor %}
+            </select>
+            <label for="batting_team">Select Batting Team</label>
+        </div>
+
+        {% set batting_team = request.form.get('batting_team') %}
+        {% set remaining_teams = teams | reject('equalto', batting_team | lower) %}
+        <div class="form-group">
+            <select id="bowling_team" name="bowling_team" required>
+                <option value="" disabled selected></option>
+                {% for team in remaining_teams %}
+                    <option value="{{ team }}">{{ team }}</option>
+                {% endfor %}
+            </select>
+            <label for="bowling_team">Select Bowling Team</label>
+        </div>
+
+        <div class="form-group">
+            <select id="city" name="city" required>
+                <option value="" disabled selected></option>
+                {% for city in cities %}
+                    <option value="{{ city }}">{{ city }}</option>
+                {% endfor %}
+            </select>
+            <label for="city">Select City</label>
+        </div>
+
+        <div class="form-group">
+            <input type="number" id="current_score" name="current_score" required placeholder=" ">
+            <label for="current_score">Current Score:</label>
+        </div>
+
+        <div class="form-group">
+            <input type="number" id="overs" name="overs" required placeholder=" ">
+            <label for="overs">Overs done (> 5 overs):</label>
+        </div>
+
+        <div class="form-group">
+            <input type="number" id="wickets" name="wickets" required placeholder=" ">
+            <label for="wickets">Wickets Out:</label>
+        </div>
+
+        <div class="form-group">
+            <input type="number" id="extras" name="extras" required placeholder=" ">
+            <label for="extras">Extras:</label>
+        </div>
+
+        <div class="form-group">
+            <input type="number" id="last_five" name="last_five" required placeholder=" ">
+            <label for="last_five">Runs in Last Five Overs:</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-large">Predict Score</button>
+    </form>
+
+    <br>
+    <br>
+    {{prediction_text}}
+</div>
+
+</body>
+</html>
